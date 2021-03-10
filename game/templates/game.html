@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ page_title }}</title>
+<link href="{{ url_for('static', filename='breakout.css') }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script type="text/javascript">
+// Set game difficulty if it has been set in deep linking
+var currDiff = "{{ curr_diff }}";
+var currUserName = "{{ curr_user_name }}";
+var launchId = "{{ launch_id }}";
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='breakout.js') }}" charset="utf-8"></script>
+</head>
+<body>
+{% if is_deep_link_launch %}
+<h3 style="text-align: center;">Flask example (Deep Link launch)</h3>
+<div class="dl-config">
+    <h1>Pick a Difficulty</h1>
+    <ul>
+        <li><a href="{{ url_for('configure', launch_id=launch_id, difficulty='easy') }}">Easy</a></li>
+        <li><a href="{{ url_for('configure', launch_id=launch_id, difficulty='normal') }}">Normal</a></li>
+        <li><a href="{{ url_for('configure', launch_id=launch_id, difficulty='hard') }}">Hard</a></li>
+    </ul>
+</div>
+{% else %}
+<h1> Invigulus!</h1>
+<button><a href="https://invigulus.com/">Click Me!</a></button>
+<div id="game-screen">
+    <div style="position:absolute;width:1000px;margin-left:-500px;left:50%; display:block">
+        
+        <canvas id="breakoutbg" width="800" height="50" style="position:absolute;left:0;border:0;">
+        </canvas>
+        <canvas id="breakout" width="800" height="50" style="position:absolute;left:0;">
+        </canvas>
+    </div>
+</div>
+{% endif %}
+</body>
+</html>
