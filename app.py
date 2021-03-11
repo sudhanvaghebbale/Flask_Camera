@@ -300,34 +300,7 @@ def predict_image():
     </script>
     </body>
     </html>
-    '''    
-
-
-def video_capture():
-    # Get a reference to webcam #0 (the default one)
-    video_capture = cv2.VideoCapture(0)
-    
-    ret, frame = video_capture.read()
-    
-    # frame_number += 1
-    return cv2.imencode('.png', frame)[1].tobytes()
-    
-def gen_frame():
-    """Video streaming generator function."""
-    while True:
-        frame = video_capture()
-        # stream = WebcamVideoStream(src=0).start()
-        # frame = stream.read()
-        # frame_ = cv2.imencode('.png', frame)[1].tobytes()
-        yield (b'--frame\r\n'
-                b'Content-Type: image/png\r\n\r\n' + frame+ b'\r\n') # concate frame one by one and show result
-
-@app.route('/video_feed', methods=['GET', 'POST'])
-def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen_frame(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-
+    '''
 
 @app.route('/test/', methods=['GET', 'POST'])
 def test():
