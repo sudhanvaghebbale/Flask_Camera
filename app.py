@@ -3,7 +3,7 @@ import os
 import pprint
 
 from tempfile import mkdtemp
-from flask import Flask, jsonify, request, render_template, url_for
+from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_caching import Cache
 from flask_debugtoolbar import DebugToolbarExtension
 from werkzeug.exceptions import Forbidden
