@@ -38,7 +38,7 @@ config = {
     "SESSION_FILE_DIR": mkdtemp(),
     "SESSION_COOKIE_NAME": "flask-session-id",
     "SESSION_COOKIE_HTTPONLY": True,
-    "SESSION_COOKIE_SECURE": False,   # should be True in case of HTTPS usage (production)
+    "SESSION_COOKIE_SECURE": True,   # should be True in case of HTTPS usage (production)
     "SESSION_COOKIE_SAMESITE": None,  # should be 'None' in case of HTTPS usage (production)
     "DEBUG_TB_INTERCEPT_REDIRECTS": False
 }
@@ -270,69 +270,11 @@ def scoreboard(launch_id):
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict_image():
-    
-    return '''
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="utf-8">
-    <title>Display Webcam Stream</title>
-    
-    </head>
-    
-    <body>
-    <div id="container">
-        <video autoplay="true" id="videoElement">
-        
-        </video>
-    </div>
-    <script>
-        var video = document.querySelector("#videoElement");
-        if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function (stream) {
-            video.srcObject = stream;
-            })
-            .catch(function (err0r) {
-            console.log("Something went wrong!");
-            });
-        }
-    </script>
-    </body>
-    </html>
-    '''    
+    return render_template("camera.html")  
 
-
-def video_capture():
-    # Get a reference to webcam #0 (the default one)
-    video_capture = cv2.VideoCapture(0)
-    
-    ret, frame = video_capture.read()
-    
-    # frame_number += 1
-    return cv2.imencode('.png', frame)[1].tobytes()
-    
-def gen_frame():
-    """Video streaming generator function."""
-    while True:
-        frame = video_capture()
-        # stream = WebcamVideoStream(src=0).start()
-        # frame = stream.read()
-        # frame_ = cv2.imencode('.png', frame)[1].tobytes()
-        yield (b'--frame\r\n'
-                b'Content-Type: image/png\r\n\r\n' + frame+ b'\r\n') # concate frame one by one and show result
-
-@app.route('/video_feed', methods=['GET', 'POST'])
-def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen_frame(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-@app.route('/test/', methods=['GET', 'POST'])
+@app.route('/test', methods=['GET', 'POST'])
 def test():
-    return "Hello!"
+    return "Hello, Sudhanva Hebbale!"
 
 if __name__ == '__main__':
-    #app.run(host='0.0.0.0', port=9001, threaded=True)
     app.run(host='0.0.0.0', debug=True, threaded=True) 

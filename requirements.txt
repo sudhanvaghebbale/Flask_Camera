@@ -1,6 +1,10 @@
+click==7.1.2
 Flask==1.1.2
-Flask_DebugToolbar==0.11.0
+itsdangerous==1.1.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
 Werkzeug==1.0.1
-Flask_Caching==1.8.0
+Flask-Caching==1.8.0
+Flask-Session==0.3.2
+Flask-DebugToolbar==0.11.0
 PyLTI1p3==1.8.4
-gunicorn
