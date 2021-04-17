@@ -23,14 +23,14 @@
     }],
     "https://canvas.instructure.com": [{
         "default": true,
-        "client_id": "10000000000015",
-        "auth_login_url": "http://canvas.docker/api/lti/authorize_redirect",
-        "auth_token_url": "http://canvas.docker/login/oauth2/token",
-        "key_set_url": "http://canvas.docker/api/lti/security/jwks",
+        "client_id": "10000000000001",
+        "auth_login_url": "https://inviguluscanvas.site/api/lti/authorize_redirect",
+        "auth_token_url": "https://inviguluscanvas.site/login/oauth2/token",
+        "key_set_url": "https://inviguluscanvas.site/api/lti/security/jwks",
         "key_set": null,
         "private_key_file": "private.key",
         "public_key_file": "public.key",
-        "deployment_ids": ["41:d3a2504bba5184799a38f141e8df2335cfa8206d"]
+        "deployment_ids": ["3:7c38cbd53360e0774d3fe733afd77e2721411cc7"]
     }],
     "ltiadvantagevalidator.imsglobal.org": [{
         "default": true,
@@ -62,8 +62,8 @@
         "auth_audience": "https://api.brightspace.com/auth/token",
         "key_set_url": "https://partners.brightspace.com/d2l/.well-known/jwks",
         "key_set": null,
-        "private_key_file": "private2.key",
-        "public_key_file": "public2.key",
+        "private_key_file": "private.key",
+        "public_key_file": "public.key",
         "deployment_ids": ["deployment-id"]
     }]
 }
